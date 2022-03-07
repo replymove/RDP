@@ -30,8 +30,8 @@ jobs:
       run: start NGROK-US.bat
     - name: RDP Erişimi Aktif Ediliyor
       run: | 
-        Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server'-name "fDenyTSConnections" -Value 0
-        Disable-NetFirewallRule -DisplayGroup "Remote Desktop"
+        Run Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server'-name "fDenyTSConnections" -Value 0
+        Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
         Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStationmains\RDP-Tcp' -name "UserAuthentication" -Value 1
     - name: Tünel Oluşturuluyor
       run: sc start ngrok
